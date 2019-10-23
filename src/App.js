@@ -1,56 +1,28 @@
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component, Suspense, lazy } from "react";
-import { Switch, Redirect } from "react-router-dom";
-import Register from './views/register'
+import { Redirect, BrowserRouter as Router, Switch} from 'react-router-dom'
+
 // import PrivateRoute from "./privateRoute";
 // import PublicRoute from "./publicRoute";
 import isAuthenticated from "./isAuthenticated";
+
 // import NotFoundPage from "views/notFoundPage";
-// import HomePage from "views/homePage";
-// import LoginPage from "views/loginPage";
-// dynamic import: (for route based code splitting)
-// const HomePage = lazy(() => import(/* webpackChunkName: "homepage" */ "views/homePage"));
-// const LoginPage = lazy(() => import(/* webpackChunkName: "loginpage" */ "views/loginPage"));
+import Register from './views/register'
+import HomePage from "./views/home";
+const LoginPage = lazy(() => import(/* webpackChunkName: "loginpage" */ "./views/login"));
 
 const routes = [
   {
     path: "/home",
-    component: Register,
+    component: HomePage,
     exact: true,
     type: "public"
   },
-  // {
-  //   path: "/login",
-  //   component: LoginPage,
-  //   type: "public"
-  // },
+  {
+    path: "/login",
+    component: LoginPage,
+    type: "public"
+  },
   // {
   //   path: "*",
   //   component: NotFoundPage,
@@ -59,11 +31,13 @@ const routes = [
 ];
 
 export default class route extends Component {
+
   render() {
+
     const routeComponents = routes.map(({ path, component, exact, type }, key) => {
       if(type === "public") {
         return exact ? (
-          <Register exact path={path} component={component} key={key} />
+          <HomePage exact path={path} component={component} key={key} />
         ) : (
           <Register path={path} component={component} key={key} />
         );
@@ -76,15 +50,19 @@ export default class route extends Component {
       //   );
       // }
     });
+
     return (
       <div>
         <Suspense fallback={<div className="loader-div"></div>}>
-          <Switch>
-            <Redirect exact from="/" to={isAuthenticated() === true ? "/home" : "/login"} />
-            {routeComponents}
-          </Switch>
+          <Router>
+            <Switch>
+              <Redirect exact from="/" to={isAuthenticated() === true ? "/home" : "/login"} />
+              {routeComponents}
+            </Switch>
+          </Router>
         </Suspense>
       </div>
     );
+    
   }
 }

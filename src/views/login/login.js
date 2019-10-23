@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './login.scss'
+// import './login.scss'
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as loginActions from "../../store/login/actions";
