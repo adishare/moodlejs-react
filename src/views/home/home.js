@@ -7,10 +7,12 @@ import Navbar from '../../components/navbar'
 import MainBanner from "../../components/mainBanner";
 import ListBanner from "../../components/listBanner";
 
-import {Container, Jumbotron, Button, Row, Col, Card, CardDeck, Tabs, Tab} from 'react-bootstrap'
+import {Container, Jumbotron} from 'react-bootstrap'
 import FeaturedList from '../../components/featuredList/featuredList';
 import CourseDeck from '../../components/courseDeck/courseDeck';
 import TopCategories from '../../components/topCategories/topCategories';
+import Testimonials from '../../components/testimonials';
+import Footer from '../../components/footer';
 
 export default class home extends Component {
     constructor(props) {
@@ -27,17 +29,8 @@ export default class home extends Component {
             <CourseDeck></CourseDeck>
             <CourseDeck></CourseDeck>
             <TopCategories></TopCategories>
-            <Container fluid>
-              <Jumbotron fluid>
-                <Container>
-                  <h1>Fluid jumbotron</h1>
-                  <p>
-                    This is a modified jumbotron that occupies the entire horizontal space of
-                    its parent.
-                  </p>
-                </Container>
-              </Jumbotron>
-            </Container>
+            <Testimonials></Testimonials>
+            <Footer></Footer>
           </div>
         );
     }

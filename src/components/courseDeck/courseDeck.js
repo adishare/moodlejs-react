@@ -12,7 +12,7 @@ export default class courseDeck extends Component {
     render() {
       return (
         <div>
-          <Container className='pt-lg-4 pt-md-3 p-4'>
+          <Container className='pt-lg-4 pt-md-3 py-5 px-4'>
           <h4>Lorem Ipsum</h4>
             <Row>
               <CardDeck>

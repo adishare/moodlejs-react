@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './mainBanner.scss';
 import image from "../../assets/banner1.jpg";
+import image2 from "../../assets/banner2.jpg";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as mainBannerActions from "../../store/mainBanner/actions";
@@ -29,7 +30,6 @@ export default class mainBanner extends Component {
 
     const styles = {
       banner1: {
-          background: `url(${image})`,
           backgroundSize: 'cover',
           minHeight: 500,
           marginBottom: 0,
@@ -39,7 +39,7 @@ export default class mainBanner extends Component {
     return (
       <Slider {...settings} className='text-light'>
         <div>
-          <Jumbotron fluid style={styles.banner1}>
+          <Jumbotron fluid style={{background: `url(${image})`, ...styles.banner1}}>
             <Container>
               <h1>BG, world!</h1>
               <p>
@@ -53,7 +53,7 @@ export default class mainBanner extends Component {
           </Jumbotron>
         </div>
         <div>
-          <Jumbotron fluid style={styles.banner1}>
+          <Jumbotron fluid style={{background: `url(${image2})`, ...styles.banner1}}>
             <Container>
               <h1>BG, world!</h1>
               <p>

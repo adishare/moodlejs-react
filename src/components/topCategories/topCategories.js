@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './topCategories.scss'
-import { Jumbotron, Container, Button, Row, Col, Card } from 'react-bootstrap';
+import { Container, Button, Row, Col, Card } from 'react-bootstrap';
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as topCategoriesActions from "../../store/topCategories/actions";
@@ -24,27 +24,89 @@ export default class topCategories extends Component {
       return (
         <div style={styles.banner1}>
           <Container className='py-md-5'>
-            <h3>BG, world!</h3>
+            <h3 className='mb-4'>BG, world!</h3>
             <Row>
               <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='d-inline'>
-                  <Card.Img variant="top" src="holder.js/100px160" />
+                <Card className='text-dark mb-4' bg='light'>
                   <Card.Body>
                     <Card.Title>Card title</Card.Title>
                     <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.
+                      This is a wider card
                     </Card.Text>
                   </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col lg={3} md={4} sm={6} xs={12}>
+                <Card className='text-dark mb-4' bg='light'>
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card
+                    </Card.Text>
+                  </Card.Body>
                 </Card>
               </Col>
             </Row>
-            <p>
-              <Button variant="primary">Learn more</Button>
-            </p>
           </Container>
    
         </div>

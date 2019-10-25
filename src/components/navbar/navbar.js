@@ -19,7 +19,7 @@ export default class navbar extends Component {
       }
 
       return (
-        <Navbar bg="light" expand="lg" style={style}>
+        <Navbar bg="white" expand="lg" style={style}>
           <Container>
             <Navbar.Brand href="#home">
               <img
