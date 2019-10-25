@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './navbar.scss'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, ButtonToolbar}  from 'react-bootstrap'
+import NavLogo from '../../assets/logokji.png'
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as navbarActions from "../../store/navbar/actions";
@@ -13,13 +14,22 @@ export default class navbar extends Component {
     render() {
 
       const style = {
-        boxShadow : "0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1)"
+        boxShadow : "0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1)",
+        zIndex: 10,
       }
 
       return (
-        <Navbar bg="light" expand="lg" fixed="top" style={style}>
+        <Navbar bg="light" expand="lg" style={style}>
           <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="#home">
+              <img
+                src={NavLogo}
+                width="65"
+                height="40"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+              />
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-2">
@@ -35,7 +45,7 @@ export default class navbar extends Component {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" style={{minWidth:300}} />
                 <Button variant="outline-success">Search</Button>
               </Form>
-              <ButtonToolbar className="ml-auto">
+              <ButtonToolbar className="ml-auto d-none d-xl-block">
                 <Button variant="light">Terms And Enterprises</Button>
               </ButtonToolbar>
               <ButtonToolbar className="ml-auto">

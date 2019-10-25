@@ -1,4 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/bootstrap.css';
+import 'holderjs/holder'
 import React, { Component, Suspense, lazy } from "react";
 import { Redirect, BrowserRouter as Router, Switch} from 'react-router-dom'
 
