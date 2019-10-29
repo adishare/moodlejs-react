@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './topCategories.scss'
-import { Container, Button, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as topCategoriesActions from "../../store/topCategories/actions";

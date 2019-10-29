@@ -7,7 +7,6 @@ import Navbar from '../../components/navbar'
 import MainBanner from "../../components/mainBanner";
 import ListBanner from "../../components/listBanner";
 
-import {Container, Jumbotron} from 'react-bootstrap'
 import FeaturedList from '../../components/featuredList/featuredList';
 import CourseDeck from '../../components/courseDeck/courseDeck';
 import TopCategories from '../../components/topCategories/topCategories';

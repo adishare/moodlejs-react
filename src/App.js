@@ -1,29 +1,22 @@
 import './assets/bootstrap.css';
 import 'holderjs/holder'
 import React, { Component, Suspense, lazy } from "react";
-import { Redirect, BrowserRouter as Router, Switch} from 'react-router-dom'
+import { Redirect, BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 // import PrivateRoute from "./privateRoute";
 // import PublicRoute from "./publicRoute";
 import isAuthenticated from "./isAuthenticated";
 
 // import NotFoundPage from "views/notFoundPage";
-import Register from './views/register'
+import RegisterPage from './views/register'
 import HomePage from "./views/home";
-const LoginPage = lazy(() => import(/* webpackChunkName: "loginpage" */ "./views/login"));
+import LoginPage from "./views/login";
 
 const routes = [
-  {
-    path: "/home",
-    component: HomePage,
-    exact: true,
-    type: "public"
-  },
-  {
-    path: "/login",
-    component: LoginPage,
-    type: "public"
-  },
+
+  { path: "/home", component: HomePage, type: "public", exact: true },
+  { path: "/login", component: LoginPage, type: "public", exact: true },
+  { path: "/register", component: RegisterPage, type: "public", exact: true },
   // {
   //   path: "*",
   //   component: NotFoundPage,
@@ -37,10 +30,8 @@ export default class route extends Component {
 
     const routeComponents = routes.map(({ path, component, exact, type }, key) => {
       if(type === "public") {
-        return exact ? (
-          <HomePage exact path={path} component={component} key={key} />
-        ) : (
-          <Register path={path} component={component} key={key} />
+        return (
+          <Route exact={exact} path={path} component={component} key={key} ></Route>
         );
       } 
       // else {

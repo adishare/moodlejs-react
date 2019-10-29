@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './navbar.scss'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container, ButtonToolbar}  from 'react-bootstrap'
 import NavLogo from '../../assets/logokji.png'
+import { Link } from 'react-router-dom'
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as navbarActions from "../../store/navbar/actions";
@@ -49,8 +50,12 @@ export default class navbar extends Component {
                 <Button variant="light">Terms And Enterprises</Button>
               </ButtonToolbar>
               <ButtonToolbar className="ml-auto">
-                <Button variant="outline-danger">Log In</Button>
-                <Button variant="danger" className="ml-2">Sign Up</Button>
+                <Link to="/login">
+                  <Button variant="outline-danger">Log In</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="danger" className="ml-2">Sign Up</Button>
+                </Link>
               </ButtonToolbar>
             </Navbar.Collapse>
           </Container>
