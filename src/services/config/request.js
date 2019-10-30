@@ -4,7 +4,7 @@ import { API_URL } from "./apiUrl";
 
 const _authorizationHeaders = () => ({
   // Authorization: store.state.login.authToken ? store.state.login.authToken : "",
-  "Content-Type": "application/json"
+  "Content-Type": "application/json",
 });
 
 const handleError = err => {
@@ -14,7 +14,11 @@ const handleError = err => {
 export const getRequest = async (url, headers = _authorizationHeaders()) => {
   try {
     const res = await axios.get(API_URL + url, {
-      headers: Object.assign({}, headers)
+      headers: Object.assign({}, headers),
+      "auth": {
+        username: 'admin',
+        password: 'admin'
+    }
     });
     return res.data.result ? res.data.result : res.data;
   } catch (err) {
@@ -28,7 +32,11 @@ export const getListRequest = async (
 ) => {
   try {
     const res = await axios.get(API_URL + url, {
-      headers: Object.assign({}, headers)
+      headers: Object.assign({}, headers),
+      "auth": {
+        username: 'admin',
+        password: 'admin'
+    }
     });
     return res.data.result ? res.data.result : res.data;
   } catch (err) {
@@ -39,14 +47,20 @@ export const getListRequest = async (
 export const postRequest = async (
   url,
   data = {},
-  headers = _authorizationHeaders()
+  headers = _authorizationHeaders(),
 ) => {
+
+  console.log('masuk');
   try {
     const res = await axios({
       url: API_URL + url,
       method: "POST",
-      headers: Object.assign({}, headers),
-      data
+      // headers: Object.assign({}, headers),
+      data,
+      "auth": {
+        username: 'admin',
+        password: 'admin'
+    }
     });
     return res.data.result ? res.data.result : res.data;
   } catch (err) {

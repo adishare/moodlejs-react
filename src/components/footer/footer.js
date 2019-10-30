@@ -11,8 +11,8 @@ export default class footer extends Component {
     // }
     render() {
       return (
-        <div className='pt-4 pb-4' style={{color: '#007791'}}>
-          <div className='py-4' style={{borderBottom: '1px solid #e8e9eb'}}>
+        <div className=' pb-4' style={{color: '#007791'}}>
+          <div className='py-4' style={{borderBottom: '1px solid #e8e9eb', borderTop: '1px solid #e8e9eb'}}>
 
             <Container>
               <Row >

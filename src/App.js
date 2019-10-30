@@ -1,27 +1,29 @@
 import './assets/bootstrap.css';
 import 'holderjs/holder'
-import React, { Component, Suspense, lazy } from "react";
+import React, { Component, Suspense } from "react";
 import { Redirect, BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 // import PrivateRoute from "./privateRoute";
 // import PublicRoute from "./publicRoute";
 import isAuthenticated from "./isAuthenticated";
 
-// import NotFoundPage from "views/notFoundPage";
+import NotFoundPage from "./views/notFoundPage";
 import RegisterPage from './views/register'
 import HomePage from "./views/home";
 import LoginPage from "./views/login";
+import CoursesPage from "./views/courses";
+import CourseCategoryId from "./views/courseCategoryId";
+import CourseEdit from "./views/courseEdit";
 
 const routes = [
 
   { path: "/home", component: HomePage, type: "public", exact: true },
   { path: "/login", component: LoginPage, type: "public", exact: true },
   { path: "/register", component: RegisterPage, type: "public", exact: true },
-  // {
-  //   path: "*",
-  //   component: NotFoundPage,
-  //   type: "public"
-  // }
+  { path: "/courses", component: CoursesPage, type: "public", exact: true },
+  { path: "/course/edit", component: CourseEdit, type: "public", exact: true },
+  { path: "/courses/:courseCategoryId", component: CourseCategoryId, type: "public", exact: true },
+  { path: "*", component: NotFoundPage, type: "public", exact: false }
 ];
 
 export default class route extends Component {

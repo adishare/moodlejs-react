@@ -57,7 +57,7 @@ export default class testimonials extends Component {
     const styles = {
       container: {
           background: '#f7f8fa',
-          borderBottom: '1px solid #e8e9eb'
+          // borderBottom: '1px solid #e8e9eb'
       }
     };
 

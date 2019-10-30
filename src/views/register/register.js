@@ -4,6 +4,8 @@ import { Container, Row, Form, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import blurwall from "../../assets/blurwall.jpg";
+
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as registerActions from "../../store/register/actions";
@@ -13,8 +15,17 @@ export default class register extends Component {
   //     this.state = {};
   // }
   render() {
+
+    const bgstyle = {
+      background : `url(${blurwall}) no-repeat center center fixed`, 
+      backgroundSize: 'cover',
+      position: 'fixed',
+      minHeight: '100%',
+      minWidth: '100%'
+    }
+
     return (
-      <div>
+      <div className='h-100' style={bgstyle}>
         <Container>
           <Row>
             <div className="col-lg-10 col-xl-9 mx-auto">
