@@ -26,7 +26,6 @@ export default class home extends Component {
             <ListBanner></ListBanner>
             <FeaturedList></FeaturedList>
             <CourseDeck></CourseDeck>
-            <CourseDeck></CourseDeck>
             <TopCategories></TopCategories>
             <Testimonials></Testimonials>
             <Footer></Footer>

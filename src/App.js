@@ -14,6 +14,7 @@ import LoginPage from "./views/login";
 import CoursesPage from "./views/courses";
 import CourseCategoryId from "./views/courseCategoryId";
 import CourseEdit from "./views/courseEdit";
+import CourseView from "./views/courseView";
 
 const routes = [
 
@@ -22,6 +23,7 @@ const routes = [
   { path: "/register", component: RegisterPage, type: "public", exact: true },
   { path: "/courses", component: CoursesPage, type: "public", exact: true },
   { path: "/course/edit", component: CourseEdit, type: "public", exact: true },
+  { path: "/course/view/:courseId", component: CourseView, type: "public", exact: true },
   { path: "/courses/:courseCategoryId", component: CourseCategoryId, type: "public", exact: true },
   { path: "*", component: NotFoundPage, type: "public", exact: false }
 ];

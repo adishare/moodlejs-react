@@ -1,14 +1,33 @@
 import React, {Component} from 'react';
 import './courseDeck.scss'
-import { Container, Card, CardDeck, Row } from 'react-bootstrap';
+import { Container, Card, CardDeck, Row, Col } from 'react-bootstrap';
+import { getListRequest } from '../../services/config/request'
+
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as courseDeckActions from "../../store/courseDeck/actions";
+
 export default class courseDeck extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    // }
+    constructor(props) {
+      super(props);
+      this.state = {
+        isLoading : false,
+        courseList : [],
+      };
+    }
+
+    async componentDidMount() {
+      this.fetchCourses('business')
+    }
+
+    async fetchCourses() {
+      let courses = await getListRequest('/courses')
+      this.setState({
+        ...this.state,
+        courseList : courses
+      });
+    }
+
     render() {
       return (
         <div>
@@ -16,74 +35,24 @@ export default class courseDeck extends Component {
           <h4>Lorem Ipsum</h4>
             <Row>
               <CardDeck>
-                <Card>
-                  <Card.Img variant="top" src="holder.js/100px160" />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
-                </Card>
-                <Card>
-                  <Card.Img variant="top" src="holder.js/100px160" />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This card has supporting text below as a natural lead-in to additional
-                      content.{' '}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
-                </Card>
-                <Card>
-                  <Card.Img variant="top" src="holder.js/100px160" />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This card has even longer content than the first to
-                      show that equal height action.
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
-                </Card>
-                <Card>
-                  <Card.Img variant="top" src="holder.js/100px160" />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This card has even longer content than the first to
-                      show that equal height action.
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
-                </Card>
-                <Card>
-                  <Card.Img variant="top" src="holder.js/100px160" />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This card has even longer content than the first to
-                      show that equal height action.
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
-                  </Card.Footer>
-                </Card>
+                { this.state.courseList.map( (course, index) => {
+                  return (
+                    <Col key={index} lg={3} md={4} sm={6}>
+                      <Card className='mr-3 mb-4'>
+                        <Card.Img variant="top" src={`https://picsum.photos/250/14`+index} />
+                        <Card.Body className='p-3'>
+                          <Card.Title>{course.fullname}</Card.Title>
+                          <Card.Text>
+                            { course.summary }
+                          </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                          <small className="text-muted">Last updated 3 mins ago</small>
+                        </Card.Footer>
+                      </Card>
+                    </Col>
+                  )})
+                }
               </CardDeck>
             </Row>
           </Container>

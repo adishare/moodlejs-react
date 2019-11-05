@@ -9,7 +9,7 @@ import image3 from "../../assets/banner3.jpg";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as mainBannerActions from "../../store/mainBanner/actions";
-import { Jumbotron, Button, Container } from "react-bootstrap";
+import { Jumbotron, Button, Container, Row, Col } from "react-bootstrap";
 
 export default class mainBanner extends Component {
   constructor(props) {
@@ -40,44 +40,56 @@ export default class mainBanner extends Component {
     return (
       <Slider {...settings} className='text-light'>
         <div>
-          <Jumbotron fluid style={{background: `url(${image})`, ...styles.banner1}}>
-            <Container>
-              <h1>BG, world!</h1>
-              <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-              </p>
-              <p>
-                <Button variant="primary">Learn more</Button>
-              </p>
+          <Jumbotron fluid className='d-flex h-100' style={{background: `url(${image2})`, ...styles.banner1}}>
+            <Container className='my-auto'>
+              <Row>
+                <Col lg={4}>
+                  <h1>Learn on your schedule</h1>
+                  <h5 className='my-4'>
+                    Study any topic, anytime. Explore thousands of courses 
+                    starting at Rp154,000 each.
+                  </h5>
+                  <p>
+                    <Button variant="primary">Learn more</Button>
+                  </p>
+                </Col>
+              </Row>
             </Container>
           </Jumbotron>
         </div>
         <div>
-          <Jumbotron fluid style={{background: `url(${image2})`, ...styles.banner1}}>
-            <Container>
-              <h1>BG, world!</h1>
-              <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-              </p>
-              <p>
-                <Button variant="primary">Learn more</Button>
-              </p>
+          <Jumbotron fluid className='d-flex h-100' style={{background: `url(${image})`, ...styles.banner1}}>
+            <Container className='my-auto'>
+              <Row>
+                <Col lg={4}>
+                  <h1>Learn on your schedule</h1>
+                  <h5 className='my-4'>
+                    Study any topic, anytime. Explore thousands of courses 
+                    starting at Rp154,000 each.
+                  </h5>
+                  <p>
+                    <Button variant="primary">Learn more</Button>
+                  </p>
+                </Col>
+              </Row>
             </Container>
           </Jumbotron>
         </div>
         <div>
-          <Jumbotron fluid style={{background: `url(${image3})`, ...styles.banner1}}>
-            <Container>
-              <h1>BG, world!</h1>
-              <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-              </p>
-              <p>
-                <Button variant="primary">Learn more</Button>
-              </p>
+          <Jumbotron fluid className='d-flex h-100' style={{background: `url(${image3})`, ...styles.banner1}}>
+            <Container className='my-auto'>
+              <Row>
+                <Col lg={4}>
+                  <h1>Learn on your schedule</h1>
+                  <h5 className='my-4'>
+                    Study any topic, anytime. Explore thousands of courses 
+                    starting at Rp154,000 each.
+                  </h5>
+                  <p>
+                    <Button variant="primary">Learn more</Button>
+                  </p>
+                </Col>
+              </Row>
             </Container>
           </Jumbotron>
         </div>

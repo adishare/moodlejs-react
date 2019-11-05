@@ -15,10 +15,10 @@ export const getRequest = async (url, headers = _authorizationHeaders()) => {
   try {
     const res = await axios.get(API_URL + url, {
       headers: Object.assign({}, headers),
-      "auth": {
-        username: 'admin',
-        password: 'admin'
-    }
+      // "auth": {
+      //   username: 'admin',
+      //   password: 'admin'
+      // }
     });
     return res.data.result ? res.data.result : res.data;
   } catch (err) {

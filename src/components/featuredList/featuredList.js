@@ -1,17 +1,47 @@
 import React, {Component} from 'react';
 import './featuredList.scss'
-import { Container, Row, Col, Tabs, Tab, Card, CardDeck } from 'react-bootstrap';
+import { Container, Row, Col, Tabs, Tab, Card } from 'react-bootstrap';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { getListRequest } from '../../services/config/request'
+
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as featuredListActions from "../../store/featuredList/actions";
+
 export default class featuredList extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+          isLoading : false,
+          activeTab : 'home',
+          businessCourseList : [],
+          designCourseList : [],
+          developmentCourseList : []
+        };
+    }
+
+    async componentDidMount() {
+      this.fetchCourses('business')
+    }
+
+    async fetchCourses(listState) {
+      let courses = await getListRequest('/courses')
+      this.setState({
+        ...this.state,
+        ...(listState == 'business' ? { businessCourseList: courses } 
+          : listState == 'Design' ? { designCourseList: courses} 
+          : { developmentCourseList: courses}
+        )
+      });
+    }
+
+    handleSelect(key) {
+      this.setState({activeTab : key, ...this.state})
+      this.fetchCourses(key)
+  }
+
     render() {
 
       const carouselsettings = {
@@ -54,191 +84,105 @@ export default class featuredList extends Component {
 
       return (
         <Container className='pt-lg-4 pt-md-3'>
+
           <Row>
 
             {/* iklan */}
             <Col md={3}>
-              <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content. text to build on the card title and make up the bulk of
-                    the card's content.
+              <Card style={{ width: '18rem' }} bg='light' className='h-100'>
+                <Card.Body className='d-flex h-100 text-center'>
+                  <div className='my-auto'>
+
+                  <Card.Title>The world’s largest selection of courses</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Choose from over 100,000 online video courses with new additions published every month
+                  </Card.Subtitle>
+                  <Card.Text>                  
                   </Card.Text>
-                  <Card.Link href="#">Card Link</Card.Link>
-                  <Card.Link href="#">Another Link</Card.Link>
+                  {/* <Card.Link href="#">Card Link</Card.Link> */}
+                  {/* <Card.Link href="#">Another Link</Card.Link> */}
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
 
-
+            {/* Tabs */}
             <Col md={9}>
-              <Tabs defaultActiveKey="Business" id="uncontrolled-tab-example" className='mb-3' >
+              <Tabs 
+                className='mb-3' 
+                id="controlled-tab-example" 
+                activeKey={this.activeTab} 
+                onSelect={tab => this.handleSelect(tab)}
+              >
                 <Tab eventKey="Business" title="Business">
-                <Slider {...carouselsettings} className=''>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
+                  <Slider {...carouselsettings} className=''>
+                    { this.state.businessCourseList.map( (course, index) => {
+                      return (
+                        <div key={index}>
+                          <Card className='mr-3'>
+                            <Card.Img variant="top" src={`https://picsum.photos/200/14`+index} />
+                            <Card.Body className='p-3'>
+                              <Card.Title>{course.fullname}</Card.Title>
+                              <Card.Text>
+                                { course.summary }
+                              </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                              <small className="text-muted">Last updated 3 mins ago</small>
+                            </Card.Footer>
+                          </Card>
+                        </div>
+                      )
+                    })}
                   </Slider>
                 </Tab>
-
 
                 <Tab eventKey="Design" title="Design">
                   <Slider {...carouselsettings} className=''>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                    <div>
-                      <Card className='mr-3'>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body className='p-3'>
-                          <Card.Title>Card title</Card.Title>
-                          <Card.Text>
-                            This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.
-                          </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                          <small className="text-muted">Last updated 3 mins ago</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
+                    { this.state.designCourseList.map( (course, index) => {
+                      return (
+                        <div key={index}>
+                          <Card className='mr-3'>
+                            <Card.Img variant="top" src={`https://picsum.photos/200/14`+(index+1)} />
+                            <Card.Body className='p-3'>
+                              <Card.Title>{course.fullname}</Card.Title>
+                              <Card.Text>
+                                { course.summary }
+                              </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                              <small className="text-muted">Last updated 3 mins ago</small>
+                            </Card.Footer>
+                          </Card>
+                        </div>
+                      )
+                    })}
                   </Slider>
                 </Tab>
-                <Tab eventKey="Development" title="Development">
 
+                <Tab eventKey="Development" title="Development">
+                  <Slider {...carouselsettings} className=''>
+                    { this.state.developmentCourseList.map( (course, index) => {
+                      return (
+                        <div key={index}>
+                          <Card className='mr-3'>
+                            <Card.Img variant="top" src={`https://picsum.photos/200/14`+(index+2)} />
+                            <Card.Body className='p-3'>
+                              <Card.Title>{course.fullname}</Card.Title>
+                              <Card.Text>
+                                { course.summary }
+                              </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                              <small className="text-muted">Last updated 3 mins ago</small>
+                            </Card.Footer>
+                          </Card>
+                        </div>
+                      )
+                    })}
+                  </Slider>
                 </Tab>
+
               </Tabs>
             </Col>
           </Row>

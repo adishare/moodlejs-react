@@ -1,14 +1,33 @@
 import React, {Component} from 'react';
 import './topCategories.scss'
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { getListRequest } from '../../services/config/request'
+
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as topCategoriesActions from "../../store/topCategories/actions";
+
 export default class topCategories extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    // }
+    constructor(props) {
+      super(props);
+      this.state = {
+        isLoading : false,
+        caategoryList : [],
+      };
+    }
+
+    async componentDidMount() {
+      this.fetchCategories()
+    }
+
+    async fetchCategories() {
+      let courseCategories = await getListRequest('/courseCategories')
+      this.setState({
+        ...this.state,
+        caategoryList : courseCategories
+      });
+    }
+
     render() {
 
       const styles = {
@@ -24,88 +43,22 @@ export default class topCategories extends Component {
       return (
         <div style={styles.banner1}>
           <Container className='py-md-5'>
-            <h3 className='mb-4'>BG, world!</h3>
+            <h3 className='mb-4'>Top Categories</h3>
             <Row>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col lg={3} md={4} sm={6} xs={12}>
-                <Card className='text-dark mb-4' bg='light'>
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a wider card
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
+              { this.state.caategoryList.map( (category, index) => {
+                return (
+                  <Col key={index} lg={3} md={4} sm={6} xs={12}>
+                    <Card className='text-dark mb-4' bg='light'>
+                      <Card.Body>
+                        <Card.Title>{category.name}</Card.Title>
+                        <Card.Text>
+                        { category.description }
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                )})
+              }
             </Row>
           </Container>
    
