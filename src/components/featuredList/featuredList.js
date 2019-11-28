@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { getListRequest } from '../../services/config/request'
+import CourseCard from "../courseCard";
 
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
@@ -30,8 +31,8 @@ export default class featuredList extends Component {
       let courses = await getListRequest('/courses')
       this.setState({
         ...this.state,
-        ...(listState == 'business' ? { businessCourseList: courses } 
-          : listState == 'Design' ? { designCourseList: courses} 
+        ...(listState === 'business' ? { businessCourseList: courses } 
+          : listState === 'design' ? { designCourseList: courses} 
           : { developmentCourseList: courses}
         )
       });
@@ -40,7 +41,7 @@ export default class featuredList extends Component {
     handleSelect(key) {
       this.setState({activeTab : key, ...this.state})
       this.fetchCourses(key)
-  }
+    }
 
     render() {
 
@@ -114,46 +115,30 @@ export default class featuredList extends Component {
                 activeKey={this.activeTab} 
                 onSelect={tab => this.handleSelect(tab)}
               >
-                <Tab eventKey="Business" title="Business">
+                <Tab eventKey="business" title="Business">
                   <Slider {...carouselsettings} className=''>
                     { this.state.businessCourseList.map( (course, index) => {
                       return (
-                        <div key={index}>
-                          <Card className='mr-3'>
-                            <Card.Img variant="top" src={`https://picsum.photos/200/14`+index} />
-                            <Card.Body className='p-3'>
-                              <Card.Title>{course.fullname}</Card.Title>
-                              <Card.Text>
-                                { course.summary }
-                              </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                              <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                          </Card>
+                        <div key={index} className='pr-3'>
+                          <CourseCard
+                            course={course}
+                            index={index}
+                          />
                         </div>
                       )
                     })}
                   </Slider>
                 </Tab>
 
-                <Tab eventKey="Design" title="Design">
+                <Tab eventKey="design" title="Design">
                   <Slider {...carouselsettings} className=''>
-                    { this.state.designCourseList.map( (course, index) => {
+                    { this.state.businessCourseList.map( (course, index) => {
                       return (
                         <div key={index}>
-                          <Card className='mr-3'>
-                            <Card.Img variant="top" src={`https://picsum.photos/200/14`+(index+1)} />
-                            <Card.Body className='p-3'>
-                              <Card.Title>{course.fullname}</Card.Title>
-                              <Card.Text>
-                                { course.summary }
-                              </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                              <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                          </Card>
+                          <CourseCard
+                            course={course}
+                            index={index}
+                          />
                         </div>
                       )
                     })}
@@ -162,21 +147,13 @@ export default class featuredList extends Component {
 
                 <Tab eventKey="Development" title="Development">
                   <Slider {...carouselsettings} className=''>
-                    { this.state.developmentCourseList.map( (course, index) => {
+                    { this.state.businessCourseList.map( (course, index) => {
                       return (
                         <div key={index}>
-                          <Card className='mr-3'>
-                            <Card.Img variant="top" src={`https://picsum.photos/200/14`+(index+2)} />
-                            <Card.Body className='p-3'>
-                              <Card.Title>{course.fullname}</Card.Title>
-                              <Card.Text>
-                                { course.summary }
-                              </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                              <small className="text-muted">Last updated 3 mins ago</small>
-                            </Card.Footer>
-                          </Card>
+                          <CourseCard
+                            course={course}
+                            index={index}
+                          />
                         </div>
                       )
                     })}

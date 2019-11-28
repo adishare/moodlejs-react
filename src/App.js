@@ -14,7 +14,8 @@ import LoginPage from "./views/login";
 import CoursesPage from "./views/courses";
 import CourseCategoryId from "./views/courseCategoryId";
 import CourseEdit from "./views/courseEdit";
-import CourseView from "./views/courseView";
+import courseOverview from "./views/courseOverview";
+import CourseLearn from "./views/courseLearn";
 
 const routes = [
 
@@ -22,11 +23,13 @@ const routes = [
   { path: "/login", component: LoginPage, type: "public", exact: true },
   { path: "/register", component: RegisterPage, type: "public", exact: true },
   { path: "/courses", component: CoursesPage, type: "public", exact: true },
+  { path: "/courseCategory/:courseCategoryId", component: CourseCategoryId, type: "public", exact: true },
   { path: "/course/edit", component: CourseEdit, type: "public", exact: true },
-  { path: "/course/view/:courseId", component: CourseView, type: "public", exact: true },
-  { path: "/courses/:courseCategoryId", component: CourseCategoryId, type: "public", exact: true },
+  { path: "/course/overview/:courseId", component: courseOverview, type: "public", exact: true },
+  { path: "/course/learn/:courseId", component: CourseLearn, type: "public", exact: true },
   { path: "*", component: NotFoundPage, type: "public", exact: false }
 ];
+
 
 export default class route extends Component {
 
@@ -35,16 +38,19 @@ export default class route extends Component {
     const routeComponents = routes.map(({ path, component, exact, type }, key) => {
       if(type === "public") {
         return (
-          <Route exact={exact} path={path} component={component} key={key} ></Route>
+          <Route exact={exact} path={path} component={component} key={key}></Route>
         );
       } 
-      // else {
-      //   return exact ? (
-      //     <PrivateRoute exact path={path} component={component} key={key} />
-      //   ) : (
-      //     <PrivateRoute path={path} component={component} key={key} />
-      //   );
-      // }
+      else {
+        // return exact ? (
+        //   <PrivateRoute exact path={path} component={component} key={key} />
+        // ) : (
+        //   <PrivateRoute path={path} component={component} key={key} />
+        // );
+        return (
+          <Route exact={exact} path={path} component={component} key={key} ></Route>
+        );
+      }
     });
 
     return (

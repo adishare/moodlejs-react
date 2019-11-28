@@ -32,11 +32,11 @@ export default class loginForm extends Component {
             </Link>
             <div className="my-3 text-center">
               <span>or </span>
-              <a href="#" className="">Forgot Password</a>
+              <a href="/" className="">Forgot Password</a>
             </div>
             <div className="mt-4 text-center">
               <span>Don't have an account? </span>
-              <a href="#" className="">Sign Up</a>
+              <a href="/register" className="">Sign Up</a>
             </div>
             
           </form>

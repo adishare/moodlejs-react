@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './topCategories.scss'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { getListRequest } from '../../services/config/request'
+import { Link } from "react-router-dom";
+
 
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
@@ -48,14 +50,18 @@ export default class topCategories extends Component {
               { this.state.caategoryList.map( (category, index) => {
                 return (
                   <Col key={index} lg={3} md={4} sm={6} xs={12}>
-                    <Card className='text-dark mb-4' bg='light'>
-                      <Card.Body>
-                        <Card.Title>{category.name}</Card.Title>
-                        <Card.Text>
-                        { category.description }
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
+                    <Link style={{textDecoration: 'none', color: '#29303b'}} to={`/courseCategory/${category.id}`}>
+                      <Card className='text-dark mb-4 box-hover' bg='light' style={{
+                          cursor : 'pointer'}}>
+                        <Card.Body>
+                          <Card.Title>{category.name}</Card.Title>
+                          <Card.Text>
+                          { category.description }
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+
+                    </Link>
                   </Col>
                 )})
               }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './footer.scss'
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import NavLogo from '../../assets/logokji.png'
+
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import * as footerActions from "../../store/footer/actions";
@@ -41,10 +43,20 @@ export default class footer extends Component {
           <Container className='pt-4'>
             <Row >
               <Col md={4} sm={2}>
-                <h5>Kerjaindonesia.id</h5>
+                <div>
+                  <img
+                    src={NavLogo}
+                    width="65"
+                    height="40"
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"
+                  />
+                </div>
               </Col>
-              <Col md={4} sm={2}>
-
+              <Col md={8} sm={10}>
+                <div className='text-right text-dark center'>
+                  Copyright Kerjaindonesia 2019
+                </div>
               </Col>
             </Row>
           </Container>
